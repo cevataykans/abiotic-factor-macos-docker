@@ -18,7 +18,7 @@ jobs:
       packages: write
     timeout-minutes: 10
     name: Build Abiotic Factor Dedicated Server
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Fetch Project Files
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
@@ -34,7 +34,7 @@ jobs:
         run: |
           sudo mkdir -pm755 /etc/apt/keyrings
           sudo wget -qO /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-          sudo wget -qNP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/noble/winehq-noble.sources
+          sudo wget -qNP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/$(lsb_release -is | tr '[:upper:]' '[:lower:]')/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources
           
           sudo dpkg --add-architecture i386
           sudo apt-get update -qq
