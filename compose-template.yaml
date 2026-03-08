@@ -17,6 +17,7 @@ services:
       AdminPassword: "admin"
       WorldSaveName: "Cascade"
       OverrideSandboxPath: "-SandboxIniPath=DefaultSandboxSettings.ini"
+      OverrideAdminPath: "-AdminIniPath=Admin.ini"
       AdditionalArgs: ""
     ports:
       - "0.0.0.0:7777:7777/udp"

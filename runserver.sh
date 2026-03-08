@@ -28,6 +28,7 @@ SteamServerName="${SteamServerName:-Dedicated Server}"
 WorldSaveName="${WorldSaveName:-Cascade}"
 AdminPassword="${AdminPassword:-}"
 OverrideSandboxPath="${OverrideSandboxPath:-}"
+OverrideAdminPath="${OverrideAdminPath:-}"
 AdditionalArgs="${AdditionalArgs:-}"
 
 SetUsePerfThreads="-useperfthreads"
@@ -50,6 +51,11 @@ if [ ! -f /home/abiotic/abioticserver/AbioticFactor/Saved/DefaultSandboxSettings
     cp /home/abiotic/abioticserver/DefaultSandboxSettings.ini /home/abiotic/abioticserver/AbioticFactor/Saved/DefaultSandboxSettings.ini
 fi
 
+# Copy the default Admin.ini if it does not exist inside Saved/ Volume
+if [ ! -f /home/abiotic/abioticserver/AbioticFactor/Saved/Admin.ini ]; then
+    cp /home/abiotic/abioticserver/Admin.ini /home/abiotic/abioticserver/AbioticFactor/Saved/Admin.ini
+fi
+
 echo ""
 echo "***********"
 echo "Launching abiotic game server..."
@@ -62,4 +68,5 @@ WINEDEBUG=fixme-all xvfb-run wine64 abioticserver/AbioticFactor/Binaries/Win64/A
    -MaxServerPlayers=$MaxServerPlayers -WorldSaveName="$WorldSaveName" \
    -SteamServerName="$SteamServerName" -ServerPassword=${ServerPassword} $SetAdminPassword \
    $OverrideSandboxPath \
+   $OverrideAdminPath \
    $AdditionalArgs
