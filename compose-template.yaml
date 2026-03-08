@@ -7,7 +7,7 @@ services:
       - "./Saved:/home/abiotic/abioticserver/AbioticFactor/Saved"
     environment:
       UsePerfThreads: true
-      NoAsyncLoadingThread: true
+      DisableAsyncLoadingThread: false
       MaxServerPlayers: 6
       # TODO: CHANGE PASSWORD FOR YOUR SERVER
       ServerPassword: "password"

@@ -36,9 +36,9 @@ if [[ $UsePerfThreads == "false" ]]; then
     SetUsePerfThreads=""
 fi
 
-SetNoAsyncLoadingThread="-NoAsyncLoadingThread"
-if [[ $NoAsyncLoadingThread == "false" ]]; then
-    SetNoAsyncLoadingThread=""
+SetNoAsyncLoadingThread=""
+if [[ $DisableAsyncLoadingThread == "true" ]]; then
+    SetNoAsyncLoadingThread="-DisableAsyncLoadingThread"
 fi
 
 SetAdminPassword=""
