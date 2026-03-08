@@ -1,76 +1,24 @@
 name: abiotic-factor
 services:
   dedicated-server:
-    # 'latest' always refers to the latest update of the game
-    # change latest with any available game version.
-    # When a new update is released, the new image may take some days to be updated.
-    # To get the latest version for compatibility, always make AutoUpdate env variable 'true'.
     image: "ghcr.io/cevataykans/abiotic-factor-macos-docker:latest"
     restart: unless-stopped
     volumes:
-      # Change the path './data' if you want to store the save file in some other path/folder.
-      # Folder name data is arbitrarily chosen.
       - "./Saved:/home/abiotic/abioticserver/AbioticFactor/Saved"
     environment:
-      # -- Network configuration --
-      #
-      # in case you server runs without errors, but you do not see it on server list:
-      # ports may need to be forwarded in your router firewall
-      Port: 7777
-      QueryPort: 27015
-
-      # -- Performance Configuration --
-      #
-      # Developers recommend setting it as true.
-      # valid values: true, false
       UsePerfThreads: true
-      #
-      # Setting async loading may help with exploration experience
-      # When set to false, server would be loading resources async, not blocking user input
-      # change to true if you notice any out of ordinary loading of objects
-      # set to false if game hangs a lot when objects & levels are being loaded
-      # note: developers recommend setting it to true
-      # valid values: true, false
-      NoAsyncLoadingThread: false
-
-      # -- Server Management --
-      #
-      # recommended for any future compatibility issues
-      # can turn it off and set version tag other than 'latest' to play an older server version
-      # valid values: true, false
-      AutoUpdate: true
-      #
-      # Maximum amount of concurrent players in the server.
-      # more players may require more server resources.
-      # recommended range: 2-6
-      # valid values range: 2-24
+      NoAsyncLoadingThread: true
       MaxServerPlayers: 6
-      #
-      # The password used to login to the server. Leave as empty to make it public server.
+      # TODO: CHANGE PASSWORD FOR YOUR SERVER
       ServerPassword: "password"
-      #
-      # The name that appears on the server browsing list.
-      # If invalid characters are detected, game will be hosted, but wont appear in the server list.
+      # TODO: CHANGE NAME THAT APPEARS IN SERVER BROWSER
       SteamServerName: "Dedicated Server"
-      #
-      # Password used to get access to in-game admin panel.
-      # Useful for console players.
+      # TODO: CHANGE ADMIN PASSWORD FOR YOUR SERVER (or leave as blank for disabling admin password)
       AdminPassword: "admin"
-      #
-      # Default world name, used for the save file.
-      # Multiple worlds can be hosted at the same time by changing the world name.
       WorldSaveName: "Cascade"
-      #
-      # States default sandbox settings of the loaded world.
-      # Updates take place only after server start/restart.
-      # SandboxSettings must be relative to the Saved folder.
-      # Copy the default settings to a new file under 'Saved/'. Replace the path for customized world settings.
-      #OverrideSandboxPath: "-SandboxIniPath=DefaultSandboxSettings.ini"
-      #
-      # You can also pass any other missing launch parameter.
+      OverrideSandboxPath: "-SandboxIniPath=DefaultSandboxSettings.ini"
       AdditionalArgs: ""
     ports:
-      # Update ports if you change the port assignments under 'Network configuration' environment variables.
       - "0.0.0.0:7777:7777/udp"
       - "0.0.0.0:7777:7777/tcp"
       - "0.0.0.0:27015:27015/udp"
