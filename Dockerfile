@@ -34,7 +34,7 @@ RUN apt-get update \
       wine-stable=10.0.0.0~jammy-1 \
       wine-stable-i386=10.0.0.0~jammy-1 \
       wine-stable-amd64=10.0.0.0~jammy-1 \
-      winehq-stable=10.0.0.0~jammy-1 \
+      winehq-stable \
    && apt-get install -y cabextract winbind screen xvfb \
    \
    # Install steamcmd
