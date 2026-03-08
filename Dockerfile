@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -31,9 +31,9 @@ RUN apt-get update \
    \
    # Install Wine and required tools
    && apt-get install -y --install-recommends \
-      wine-stable=10.0.0.0~jammy-1 \
-      wine-stable-i386=10.0.0.0~jammy-1 \
-      wine-stable-amd64=10.0.0.0~jammy-1 \
+      wine-stable=10.0.0.0~noble-1 \
+      wine-stable-i386=10.0.0.0~noble-1 \
+      wine-stable-amd64=10.0.0.0~noble-1 \
       winehq-stable \
    && apt-get install -y cabextract winbind screen xvfb \
    \
