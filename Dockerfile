@@ -20,6 +20,10 @@ RUN apt-get update \
    # Enable multiverse for steamcmd
    && add-apt-repository multiverse \
    \
+   && mkdir -p /etc/apt/preferences.d \
+   && printf "Package: winehq-stable\nPin: version 10.*\nPin-Priority: 1001\n" \
+      > /etc/apt/preferences.d/wine \
+   \
    # Enable 32-bit architecture
    && dpkg --add-architecture i386 \
    \

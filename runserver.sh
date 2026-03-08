@@ -61,7 +61,7 @@ echo "***********"
 echo "Launching abiotic game server..."
 echo "***********"
 echo ""
-WINEDEBUG=fixme-all xvfb-run wine64 abioticserver/AbioticFactor/Binaries/Win64/AbioticFactorServer-Win64-Shipping.exe \
+WINEDEBUG=fixme-all wine64 abioticserver/AbioticFactor/Binaries/Win64/AbioticFactorServer-Win64-Shipping.exe \
    -log -newconsole \
    $SetUsePerfThreads $SetNoAsyncLoadingThread \
    -PORT=$Port -QUERYPORT=$QueryPort -tcp \
