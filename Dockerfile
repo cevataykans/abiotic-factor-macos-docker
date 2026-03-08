@@ -28,7 +28,7 @@ RUN apt-get update \
    \
    # Pin Wine to version 8.x
    && mkdir -p /etc/apt/preferences.d \
-   && printf "Package: winehq-stable wine-stable wine-stable-amd64 wine-stable-i386\nPin: version 8.*\nPin-Priority: 1001\n" \
+   && printf "Package: winehq-stable wine-stable wine-stable-amd64 wine-stable-i386\nPin: version 10.*\nPin-Priority: 1001\n" \
       > /etc/apt/preferences.d/wine \
    \
    && apt-get update \
@@ -49,9 +49,6 @@ RUN apt-get update \
    # Cleanup apt cache
    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Switch to non-root user
-USER abiotic
-
 # Install Abiotic Factor dedicated server
 RUN mkdir /home/abiotic/abioticserver \
    && /usr/games/steamcmd +@sSteamCmdForcePlatformType windows \
@@ -69,5 +66,8 @@ COPY Admin.ini abioticserver/Admin.ini
 VOLUME ["/home/abiotic/abioticserver/AbioticFactor/Saved"]
 
 EXPOSE 7777/tcp 7777/udp 27015/tcp 27015/udp
+
+# Switch to non-root user
+USER abiotic
 
 ENTRYPOINT ["/bin/bash", "abioticserver/AbioticFactor/Binaries/Win64/runserver.sh"]
