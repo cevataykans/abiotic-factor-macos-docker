@@ -36,6 +36,7 @@ COPY runserver.sh abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
 RUN chmod +x abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
 
 COPY DefaultSandboxSettings.ini abioticserver/DefaultSandboxSettings.ini
+COPY Admin.ini abioticserver/Admin.ini
 VOLUME ["/home/abiotic/abioticserver/AbioticFactor/Saved"]
 
 EXPOSE 7777/tcp 7777/udp 27015/tcp 27015/udp
