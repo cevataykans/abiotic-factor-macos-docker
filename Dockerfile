@@ -13,7 +13,7 @@ RUN apt-get update && apt-get upgrade -y \
     && wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/$(lsb_release -is | tr '[:upper:]' '[:lower:]')/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources \
     && dpkg --add-architecture i386 \
     && apt-get update \
-    && apt-get install -y --install-recommends winehq-stable \
+    && apt-get install -y --install-recommends winehq-stable wine-stable:amd64 wine-stable-amd64:amd64 wine-stable-i386:i386 \
     && apt-get install -y --no-install-recommends \
     cabextract \
     winbind \
