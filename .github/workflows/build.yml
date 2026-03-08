@@ -30,6 +30,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check Wine64 version
+        run: |
+          sudo mkdir -pm755 /etc/apt/keyrings
+          sudo wget -qO /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+          sudo wget -qNP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/noble/winehq-noble.sources
+          
+          sudo dpkg --add-architecture i386
+          sudo apt-get update -qq
+          
+          apt-cache policy winehq-stable
+
       - name: Build and push container
         uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83
         with:
