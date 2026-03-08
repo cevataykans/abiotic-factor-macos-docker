@@ -30,7 +30,7 @@ RUN apt-get update \
    && apt-get update \
    \
    # Install Wine and required tools
-   && apt-get install -y --install-recommends winehq-stable \
+   && apt-get install -y --install-recommends --allow-downgrades winehq-stable \
    && apt-get install -y cabextract winbind screen xvfb \
    \
    # Install steamcmd
